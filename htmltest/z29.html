@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>表单验证</title>
+    <style>
+        *{margin: 0;padding: 0;}
+        .over{
+            position: absolute;
+            height: 100%;width: 100%;
+            left: 0;top: 0;
+            background-color: #000;
+            opacity: 0.2;
+            display: none;
+        }
+
+        .dialog{
+            display: none;
+            width: 300px;
+            position: absolute;
+            left: 50%;top: 50%;
+            transform: translate(-50%,-50%);
+            box-shadow: 1px 1px 4px #666;
+        }
+        .dialog h3{
+            background-color: #22f;
+            color:#fff;
+            font-size: 14px;
+            font-weight: normal;
+            padding: 5px 12px;
+        }
+        .dialog p{
+            padding: 12px;
+        }
+        .close{
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: url('images/close.png') no-repeat;
+            right: 12px;
+            background-size: 100%;
+        }
+    </style>
+</head>
+<body>
+    <form action="check.jsp" method="post"  name="f1" onsubmit="return check();">
+        <p>
+            <input type="text" name="username" placeholder="用户名">
+
+        </p>
+        <p>
+            <!-- <button type="submit">验证</button> -->
+            <button type="button" onclick="check()">验证</button>
+        </p>
+    </form>
+    <div class="over" id="over"></div>
+    <div class="dialog" id="dialog">
+        <h3>提示 <span class="close" onclick="close_dialog()"></span></h3>
+        <p>请输入用户名！</p>
+    </div>
+    <script>
+        /*function check(){
+            var uname=f1.username.value;
+            if (uname.length==0) {
+                // alert('请输入用户名');
+                show_dialog();
+                setTimeout("close_dialog()",3000);
+                return false;
+            }
+            return true;
+        }*/
+        function check(){
+            var uname=f1.username.value;
+            if (uname.length==0) {
+                show_dialog();
+                return false;
+            }
+            var letters="#$%^&*";
+            for (var i = 0; i < uname.length; i++) {
+                var char=uname[i];
+                if(letters.indexOf(char)!=-1){
+                    alert('含有非法字符');
+                    return false;
+                }
+            }
+            var patter=/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
+            if (!patter.test(uname)) {
+                alert('必须为正确的email地址');
+                return false;
+            }
+            f1.submit();
+        }
+
+        function show_dialog(){
+            var over=document.getElementById('over');
+            var dialog=document.getElementById('dialog');
+            over.style.display='block';
+            dialog.style.display='block';
+        }
+       function close_dialog(){
+            var over=document.getElementById('over');
+            var dialog=document.getElementById('dialog');
+            over.style.display='none';
+            dialog.style.display='none';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>setTimeOut</title>
+</head>
+<body>
+    <h1 id="title"></h1>
+    <script>
+        var title=document.getElementById('title');
+        var i=0;
+        var t=setTimeout("f1()",2000);
+        function f1(){
+            alert("a");
+            setTimeout("f1()",2000);
+        }
+    </script>
+</body>
+</html>

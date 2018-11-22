@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .error{
+            color:#f00;
+        }
+    </style>
+</head>
+<body>
+    <form action="" method="post" name="frm">
+        <p>
+        学号：<input type="text" name="uid">
+        
+        </p>
+        <p>
+            <input type="button" value="发送" onclick="check()">
+        </p>
+    </form>
+    <script>
+        function check(){
+            var uid=frm.uid;
+            var parent=uid.parentNode;
+            var err_img=parent.getElementsByTagName('img')[0];
+            var err_span=parent.getElementsByTagName('span')[0];
+            if (err_img!=undefined) {
+                parent.removeChild(err_img);
+                parent.removeChild(err_span);
+            }
+            if (uid.value.length==0) {
+                error_info('用户名必须输入');
+            }
+        }
+        function error_info(msg){
+            var img=document.createElement('img');
+            img.src="images/error.gif";
+            var uid=frm.uid;
+            uid.parentNode.appendChild(img);
+            var span=document.createElement('span');
+            span.innerHTML=msg;
+            span.className='error';
+            uid.parentNode.appendChild(span);
+        }
+    </script>
+</body>
+</html>

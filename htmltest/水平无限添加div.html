@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		#content{
+			display: block;
+			border: 1px solid #000;
+			width: 500px;
+			height: 120px;
+			overflow-x: scroll;
+			overflow-y: hidden; 
+		}
+		#subContent{
+			display: inline-block;
+			height: 100px;
+		}
+		.cdiv{
+			display: inline-block;
+			border: 1px solid red;
+			min-width: 98px;
+			min-height: 98px;
+			line-height: 98px;
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+	<button type="button" id="btn" onclick="appendDiv()">添加div</button>
+	<div id="content">
+		<div id="subContent">
+		</div>
+	</div>
+	<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+	<script type="text/javascript">
+		function appendDiv(){
+			var i = $("#subContent").children('div').length+1;
+			var cDiv = "<div class='cdiv'>"+i+"</div>"
+			$("#subContent").css("width",($("#subContent").width()+100)+'px');
+			$("#subContent").append(cDiv);
+		}
+	</script>
+</body>
+</html>

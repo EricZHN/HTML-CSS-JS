@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>slider</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		#slider{
+			margin-left: 20px;
+			margin-top: 20px;
+			width: 900px;
+			overflow: hidden;
+			position: relative;
+		}
+		#slider #list{
+			width: 4500px;
+			height: 506px;
+		}
+		#list img{
+			width: 900px;
+			height: 506px;
+			float: left;
+		}
+		#list{
+			transition:margin-left 0.5s linear;
+			-moz-transition:margin-left 0.5s linear; Firefox 4
+			-webkit-transition:margin-left 0.5s linear; Safari and Chrome
+			-o-transition:margin-left 0.5s linear; Opera
+		}
+		#buttons{
+			position: absolute;
+			bottom: 0;
+            width: 100%;
+            line-height: 30px;
+            background-color: rgba(0,0,0,.4);
+            text-align: center;
+		}
+		#buttons li{
+			display: inline-block;
+            /*float: left;*/
+            width: 10px;
+            height: 10px;
+            border:1px solid #fff;
+            border-radius: 5px;
+            cursor: pointer;
+		}
+		#buttons li.active{
+			background-color: #fff;
+		}
+		.arrow{
+			position: absolute;
+			top: 0;
+			width: 25%;
+			height: 100%;
+		}
+		.arrow span{
+			position: absolute;
+			width: 30px;
+			line-height: 45px;
+			top: 50%;
+			margin-top: -32.5px;
+			background-color: rgba(0,0,0,0.5);
+			font-size: 24px;
+			color: #fff
+		}
+		.arrow:hover span{
+			background-color: rgba(0,0,0,0.8);
+		}
+		#prev{
+			left: 0;
+		}
+		#prev span{
+			left: 0;
+			text-align: center;
+		}
+		#next{
+			right: 0;
+		}
+		#next span{
+			right: 0;
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+	<div id="slider">
+		<div id="list" style="margin-left: 0px;">
+			<img src="./1.jpg" alt="1" id="img1">
+			<img src="./2.jpg" alt="2" id="img2">
+			<img src="./3.jpg" alt="3" id="img3">
+			<img src="./4.jpg" alt="4" id="img4">
+			<img src="./5.jpg" alt="5" id="img5">
+		</div>
+		<ul id="buttons">
+			<li index="1" class="active"></li>
+			<li index="2"></li>
+			<li index="3"></li>
+			<li index="4"></li>
+			<li index="5"></li>
+		</ul>
+        <a href="javascript:;" id="prev" class="arrow"><span>&lt;</span></a>
+        <a href="javascript:;" id="next" class="arrow"><span>&gt;</span></a>
+	</div>
+	
+	<script>
+		var index=0;
+		var list=document.getElementById('list');
+		var prev=document.getElementById('prev');
+		var next=document.getElementById('next');
+		var timer;
+		var slider=document.getElementById('slider');
+		var buttons=document.getElementById('buttons');
+		var button=buttons.getElementsByTagName('li');
+
+		for (var i = 0; i < button.length; i++) {
+            button[i].onclick=function(){
+                var new_index=this.getAttribute('index');
+                new_index--;
+                showButton(new_index);
+                var offset=-900*(new_index-index);
+                move(offset);
+                index=new_index;
+            }
+        }
+        function showButton(number){
+            for (var i = 0; i < button.length; i++) {
+                if (button[i].className=='active') {
+                    button[i].className='';
+                    break;
+                }
+            }
+            button[number].className="active";
+        }
+
+        function move(offset){
+            var pos=parseInt(list.style.marginLeft);
+            console.log(pos);
+            var newPos=pos+offset;
+            if (newPos>0) {
+                newPos=-3600;
+            }
+            if (newPos<-3600) {
+                newPos=0;
+            }
+            list.style.marginLeft=newPos + 'px';
+        }
+       	prev.onclick=function(){
+            move(900);
+            index--;
+            if (index<0) {index=4}
+            showButton(index);
+        }
+        next.onclick=function(){
+            move(-900);
+            index++;
+            if (index>4) {index=0}
+            showButton(index);
+        }
+        function play(){
+            timer=setInterval("next.onclick()",5000);
+        }
+        play();
+        slider.onmouseover=function(){
+            clearTimeout(timer);
+        }
+        slider.onmouseout=function(){
+            play();
+        }
+
+/*		prev.onclick=function(){
+			list.style.marginLeft=(1-index)*900+'px';
+			index--;
+			if(index<0){
+				index=4;
+				list.style.marginLeft=-3600+'px';
+			}
+		}
+		next.onclick=function(){
+			list.style.marginLeft=(index+1)*-900+'px';
+			index++;
+			if(index>4){
+				index=0;
+				list.style.marginLeft=0+'px';
+			}
+		}*/
+	</script>
+</body>
+</html>

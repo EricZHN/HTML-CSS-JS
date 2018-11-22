@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+
+	<style>
+		*{
+			margin: 0px;
+			padding: 0px;
+		}
+		body{
+			font-size: 14px;
+		}
+		.layer{
+			width: 300px;
+			box-shadow: 1px 1px 4px #aaa;
+			position: absolute;
+		}
+		.layer p{
+			line-height: 50px;
+			font-weight: normal;
+		}
+
+
+	</style>
+</head>
+<body>
+	<form method="post" name="f1">
+		<input type="text" name="t1">+
+		<input type="text" name="t2">=
+		<input type="text" name="t3"><br>
+		<input type="button" name="b1" value="计算" onclick="calc1()">
+	</form>
+	<form method="post" name="f2">
+		<input type="text" name="t1">+
+		<input type="text" name="t2">=
+		<input type="text" name="t3"><br>
+		<input type="button" name="b1" value="计算" onclick="calc2()">
+	</form>
+	<div class="layer">
+		<h3>提示</h3>
+		<p>请输入</p>
+	</div>
+
+
+	<script>
+		function calc1(){
+			var n1=parseInt(f1.t1.value);
+			console.log(n1);
+			var n2=parseInt(f1.t2.value);
+			console.log(n2);
+			var sum=n1+n2;
+			f1.t3.value=sum;
+			console.log(sum);
+		}
+		function calc2(){
+
+			var n1=parseInt(f2.t1.value);
+			if(isNaN(n1)){
+				alert("请输入");
+			}
+			console.log(n1);
+			var n2=parseInt(f2.t2.value);
+			console.log(n2);
+			var sum=n1+n2;
+			if(isNaN(sum)){
+				f2.t3.value="";
+			}else{
+			f2.t3.value=sum;}
+			console.log(sum);
+		}
+		
+	</script>
+</body>
+</html>

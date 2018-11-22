@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <h3>用户许可协议</h3>
+    <p>
+        <textarea name="m" id="" cols="30" rows="10"></textarea>
+    </p>
+    <p>
+        <input type="button" value="注册" id="reg" disabled>
+    </p>
+    <script>
+        var leftCount=10;
+        var t;
+        var btn=document.getElementById('reg');
+        btn.value="请仔细阅读，还剩"+leftCount+"秒";
+        function count_down(){
+            leftCount--;
+            if (leftCount==0) {
+                    reg.disabled="";
+                    clearInterval(t);
+                    btn.value="注册";
+            }else{
+                btn.value="请仔细阅读，还剩"+leftCount+"秒";
+            }
+        }
+        t=setInterval('count_down()',1000);
+    </script>
+</body>
+</html>

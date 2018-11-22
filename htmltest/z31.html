@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <body >
+        <h1 id="header">城市</h1>
+        <ul id='city'>
+            <li>北京 <span class="del">x</span></li>
+            <li>上海 <span class="del">x</span></li>
+            <li>广州 <span class="del">x</span></li>
+        </ul>
+        <input type="text" name="cityname" id="cityname">
+        <input type="button" value="添加" onclick="addCity()">
+    </body>
+    <script>
+        function addCity(){
+            var cityname=document.getElementById('cityname');
+            var city=document.getElementById('city');
+            var li=document.createElement('li');
+            // li.innerHTML="abc";
+            // var txt=document.createTextNode(cityname.value);
+            // li.appendChild(txt);
+            li.textContent="<span style='color:red'>测试</span>";
+            // li.innerHTML="<span style='color:red'>测试</span>";
+            city.appendChild(li);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DOM</title>
+</head>
+    <ul id="list">
+        <li>北京 <span>x</span></li>
+        <li>上海 <span>x</span></li>
+        <li>广州 <span>x</span></li>
+    </ul>
+<body>
+    <input type="text" name="city_name" id="city_name">
+    <input type="button" value="增加" id="btn1">
+    <script>
+        var btn1=document.getElementById('btn1');
+        var list=document.getElementById('list');
+        var dels=list.getElementsByTagName('span');
+        for (var i = 0; i < dels.length; i++) {
+            dels[i].onclick=function(){
+                this.parentNode.remove();
+            }
+        }
+
+        btn1.onclick=function(){
+            var city_name=document.getElementById('city_name');
+
+            var item=document.createElement('li');
+            /*var text=document.createTextNode(city_name.value);
+            item.appendChild(text);*/
+            item.innerHTML=city_name.value + ' <span>x</span>';
+            // item.textContent='<span style="color:#f00">南昌</span>';
+            item.getElementsByTagName("span")[0].onclick=function(){
+                this.parentNode.remove();
+            }
+            var list=document.getElementById('list');
+            var items=list.getElementsByTagName('li');
+            for (var i = 0; i < items.length; i++) {
+                if(city_name.value==items[i].innerHTML){
+                    alert('城市已存在');
+                    return false;
+                }
+            }
+            list.appendChild(item);
+            city_name.value='';
+
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .toolbar{
+            list-style: none;
+            position: absolute;
+            right: 0;
+            top: 50%;
+            margin-top: -75px;
+        }
+        .toolbar li{
+            margin-bottom: 2px;
+        }
+        .toolbar li a{
+            line-height: 48px;
+            text-align: center;
+            display: block;
+            text-decoration: none;
+            width: 48px;
+            height: 48px;
+            text-indent: -9999px;
+            
+        }
+
+        .toolbar li .fankui{
+            background: #c3c3c3 url(./hw1_sprite.png) no-repeat 0 -560px;
+        }
+        .toolbar li .youjian{
+            background: #c3c3c3 url(./hw1_sprite.png) no-repeat 0 -608px;
+        }
+        .toolbar li .dianhua{
+            background: #c3c3c3 url(./hw1_sprite.png) no-repeat 0 -656px;
+        }
+        .toolbar li .fankui:hover{
+            background: #cc3535 url(./hw1_sprite.png) no-repeat 0 -752px;
+        }
+        .toolbar li .youjian:hover{
+            background: #cc3535 url(./hw1_sprite.png) no-repeat 0 -800px;
+        }
+        .toolbar li .dianhua:hover{
+            background: #cc3535 url(./hw1_sprite.png) no-repeat 0 -848px;
+        }
+    </style>
+
+
+</head>
+<body>
+    <ul class="toolbar">
+
+        <li><a href="#" class="fankui">反馈</a></li>
+        <li><a href="#" class="youjian">邮件</a></li>
+        <li><a href="#" class="dianhua">电话</a></li>
+        
+    </ul>
+</body>
+</html>

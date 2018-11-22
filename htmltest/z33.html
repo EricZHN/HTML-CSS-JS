@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body onload="init_text()">
+    <form action="" method="post" name="myfrm">
+        <p>
+            用 户 名：<input type="text" name="username" >
+        </p>
+        <p>
+            电子邮箱：<input type="email" name="email" >
+        </p>
+        <p>
+            <input type="submit" value="发送">
+            <button type="submit">发送</button>
+        </p>
+    </form>
+    <script>
+        function init_text(){
+            var inputs=document.getElementsByTagName('input');
+            for (var i = 0; i < inputs.length; i++) {
+                if (inputs[i].type=='text') {
+                    inputs[i].style.backgroundColor="#ccc";
+                    inputs[i].onfocus=function(){
+                        this.style.backgroundColor="#ff0";
+                    }
+                    inputs[i].onblur=function(){
+                        this.style.backgroundColor="#ccc";
+                    }
+
+                }
+
+            }
+
+           /* var username=myfrm.username;
+            var email=myfrm.email;
+            username.style.backgroundColor="#ccc";
+            email.style.backgroundColor="#ccc";
+            username.onfocus=function(){
+                console.log('focus');
+                this.style.backgroundColor="#ff0";
+            }
+            // username.onfocus=focus(username);
+            username.onblur=function(){
+                console.log('blur');
+                this.style.backgroundColor="#ccc";
+            }
+            email.onfocus=function(){
+                console.log('focus');
+                this.style.backgroundColor="#ff0";
+            }
+            // username.onfocus=focus(username);
+            email.onblur=function(){
+                console.log('blur');
+                this.style.backgroundColor="#ccc";
+            }*/
+        }
+
+    </script>
+</body>
+</html>
